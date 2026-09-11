@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Meetha Pakistan - Pakistani Desserts</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #fff8f0;
+            color: #333;
+        }
+
+        /* NAVBAR */
+        nav {
+            background: #7b1e1e;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 7%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav h1 {
+            font-size: 28px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #ffd27f;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 500px;
+            background:
+                linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+                url("https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 30px;
+        }
+
+        .hero-content h2 {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #e9a23b;
+            color: white;
+            padding: 13px 25px;
+            border-radius: 7px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #c77c1b;
+        }
+
+        /* SECTION */
+        section {
+            padding: 60px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #7b1e1e;
+            font-size: 35px;
+            margin-bottom: 40px;
+        }
+
+        /* DESSERT CARDS */
+        .dessert-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.12);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card h3 {
+            color: #7b1e1e;
+            margin-bottom: 10px;
+            font-size: 23px;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            color: #d17a00;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* ABOUT */
+        .about {
+            background: #f6e3cc;
+            text-align: center;
+        }
+
+        .about p {
+            max-width: 850px;
+            margin: auto;
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        /* ORDER */
+        .order-box {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #7b1e1e;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        /* CONTACT */
+        .contact {
+            background: #7b1e1e;
+            color: white;
+        }
+
+        .contact .section-title {
+            color: white;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            text-align: center;
+        }
+
+        .contact-box {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .contact-box h3 {
+            color: #ffd27f;
+            margin-bottom: 10px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #4b1111;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* MESSAGE */
+        #message {
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* MOBILE */
+        @media(max-width: 700px) {
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero-content h2 {
+                font-size: 38px;
+            }
+
+            .hero-content p {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+
+    <h1>🍰 Meetha Pakistan</h1>
+
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#desserts">Desserts</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#order">Order</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+</nav>
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <h2>Pakistani Sweetness</h2>
+
+        <p>
+            Traditional Pakistani Desserts Made With Love ❤️
+        </p>
+
+        <a href="#desserts" class="btn">
+            Explore Desserts
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- DESSERTS -->
+<section id="desserts">
+
+    <h2 class="section-title">
+        Our Pakistani Desserts
+    </h2>
+
+    <div class="dessert-container">
+
+        <!-- GULAB JAMUN -->
+        <div class="card">
+
+            <img
+                src="https://images.unsplash.com/photo-1666190094762-7a5c9b5d1f91?auto=format&fit=crop&w=700&q=80"
+                alt="Gulab Jamun"
+            >
+
+            <div class="card-content">
+
+                <h3>Gulab Jamun</h3>
+
+                <p>Soft and delicious traditional sweet.</p>
+
+                <div class="price">
+                    Rs. 450 / kg
+                </div>
+
+                <button class="btn" onclick="addOrder('Gulab Jamun')">
+                    Order Now
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- JALEBI -->
+        <div class="card">
+
+            <img
+                src="https://images.unsplash.com/photo-1605196560548-0e7d7e0c8e7a?auto=format&fit=crop&w=700&q=80"
+                alt="Jalebi"
+            >
+
+            <div class="card-content">
+
+                <h3>Jalebi</h3>
+
+                <p>Crispy, juicy and full of sweetness.</p>
+
+                <div class="price">
+                    Rs. 350 / kg
+                </div>
+
+                <button class="btn" onclick="addOrder('Jalebi')">
+                    Order Now
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- KHEER -->
+        <div class="card">
+
+            <img
+                src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=700&q=80"
+                alt="Kheer"
+            >
+
+            <div class="card-content">
+
+                <h3>Kheer</h3>
+
+                <p>Creamy Pakistani rice pudding.</p>
+
+                <div class="price">
+                    Rs. 250 / bowl
+                </div>
+
+                <button class="btn" onclick="addOrder('Kheer')">
+                    Order Now
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- RAS MALAI -->
+        <div class="card">
+
+            <img
+                src="https://images.unsplash.com/photo-1631206753348-db44968fd440?auto=format&fit=crop&w=700&q=80"
+                alt="Ras Malai"
+            >
+
+            <div class="card-content">
+
+                <h3>Ras Malai</h3>
+
+                <p>Soft cheese balls in sweet milk.</p>
+
+                <div class="price">
+                    Rs. 600 / kg
+                </div>
+
+                <button class="btn" onclick="addOrder('Ras Malai')">
+                    Order Now
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- BARFI -->
+        <div class="card">
+
+            <img
+                src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=700&q=80"
+                alt="Barfi"
+            >
+
+            <div class="card-content">
+
+                <h3>Barfi</h3>
+
+                <p>Traditional milk-based Pakistani sweet.</p>
+
+                <div class="price">
+                    Rs. 700 / kg
+                </div>
+
+                <button class="btn" onclick="addOrder('Barfi')">
+                    Order Now
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Gajar Halwa -->
+        <div class="card">
+
+            <img
+                src="https://images.unsplash.com/photo-1626132647523-66f5bf380027?auto=format&fit=crop&w=700&q=80"
+                alt="Gajar Halwa"
+            >
+
+            <div class="card-content">
+
+                <h3>Gajar Halwa</h3>
+
+                <p>Warm carrot halwa with nuts.</p>
+
+                <div class="price">
+                    Rs. 550 / kg
+                </div>
+
+                <button class="btn" onclick="addOrder('Gajar Halwa')">
+                    Order Now
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+<section class="about" id="about">
+
+    <h2 class="section-title">
+        About Meetha Pakistan
+    </h2>
+
+    <p>
+        Meetha Pakistan is a Pakistani dessert website where you
+        can discover traditional sweets made with authentic flavors.
+        From Gulab Jamun and Jalebi to Kheer, Barfi and Ras Malai,
+        we bring the taste of Pakistan directly to your table.
+    </p>
+
+</section>
+
+
+<!-- ORDER FORM -->
+<section id="order">
+
+    <h2 class="section-title">
+        Place Your Order
+    </h2>
+
+    <div class="order-box">
+
+        <form id="orderForm">
+
+            <div class="form-group">
+
+                <label>
+                    Your Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="03XX-XXXXXXX"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Select Dessert
+                </label>
+
+                <select id="dessert" required>
+
+                    <option value="">
+                        -- Select Dessert --
+                    </option>
+
+                    <option value="Gulab Jamun">
+                        Gulab Jamun - Rs. 450/kg
+                    </option>
+
+                    <option value="Jalebi">
+                        Jalebi - Rs. 350/kg
+                    </option>
+
+                    <option value="Kheer">
+                        Kheer - Rs. 250/bowl
+                    </option>
+
+                    <option value="Ras Malai">
+                        Ras Malai - Rs. 600/kg
+                    </option>
+
+                    <option value="Barfi">
+                        Barfi - Rs. 700/kg
+                    </option>
+
+                    <option value="Gajar Halwa">
+                        Gajar Halwa - Rs. 550/kg
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Quantity
+                </label>
+
+                <input
+                    type="number"
+                    id="quantity"
+                    min="1"
+                    value="1"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Delivery Address
+                </label>
+
+                <textarea
+                    id="address"
+                    placeholder="Enter your complete address"
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn"
+            >
+                Submit Order
+            </button>
+
+            <div id="message"></div>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+
+    <h2 class="section-title">
+        Contact Us
+    </h2>
+
+    <div class="contact-container">
+
+        <div class="contact-box">
+
+            <h3>📞 Phone</h3>
+
+            <p>
+                +92 300 1234567
+            </p>
+
+        </div>
+
+
+        <div class="contact-box">
+
+            <h3>📧 Email</h3>
+
+            <p>
+                info@meethapakistan.com
+            </p>
+
+        </div>
+
+
+        <div class="contact-box">
+
+            <h3>📍 Location</h3>
+
+            <p>
+                Multan, Punjab, Pakistan
+            </p>
+
+        </div>
+
+
+        <div class="contact-box">
+
+            <h3>🕒 Opening Hours</h3>
+
+            <p>
+                10:00 AM - 10:00 PM
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <p>
+        © 2026 Meetha Pakistan | Pakistani Desserts ❤️
+    </p>
+
+</footer>
+
+
+<!-- JAVASCRIPT -->
+<script>
+
+    // Order button
+    function addOrder(dessertName) {
+
+        document.getElementById("dessert").value = dessertName;
+
+        document.getElementById("order").scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
+
+
+    // Order Form
+    document.getElementById("orderForm").addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        let name =
+            document.getElementById("name").value;
+
+        let dessert =
+            document.getElementById("dessert").value;
+
+        let quantity =
+            document.getElementById("quantity").value;
+
+        let message =
+            document.getElementById("message");
+
+
+        message.innerHTML =
+            "✅ Thank you " +
+            name +
+            "! Your order for " +
+            quantity +
+            " × " +
+            dessert +
+            " has been received.";
+
+        message.style.color = "green";
+
+
+        // Reset form
+        document.getElementById("orderForm").reset();
+
+    });
+
+</script>
+
+</body>
+</html>
